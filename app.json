@@ -1,0 +1,12 @@
+{
+  "name": "budgetexpoapp",
+  "displayName": "budget-expo-app",
+  "expo": {
+    "name": "budget-expo-app",
+    "slug": "budget-expo-app",
+    "version": "1.0.0",
+    "assetBundlePatterns": [
+      "**/*"
+    ]
+  }
+}
