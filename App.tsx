@@ -1,19 +1,15 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StackNavigation } from './src/navigation/stackNavigation';
+import * as Sentry from 'sentry-expo'
+
+Sentry.init({
+  dsn: "https://ee651ffee79a4b038f0cd87a13dbc49d@o1093126.ingest.sentry.io/6112253",
+  enableInExpoDevelopment: true,
+  debug: true
+})
 
 export default function App() {
   return (
-    <View style={styles.container}>
-      <Text>Open up App.tsx to start working on your app!</Text>
-    </View>
+    <StackNavigation />
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
