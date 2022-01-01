@@ -18,7 +18,7 @@ export const SplashScreen: FC = () => {
     useEffect(() => {
         const unsubscribe = auth.onAuthStateChanged((user: any ) => {
             if(user) {
-                navigation.navigate("Profile")
+                navigation.navigate("BottomTabNavigation")
             }
         })
 

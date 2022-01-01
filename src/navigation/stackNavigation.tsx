@@ -3,11 +3,12 @@ import { Platform } from 'react-native'
 import { createStackNavigator, StackNavigationOptions, CardStyleInterpolators } from '@react-navigation/stack'
 import { NavigationContainer } from '@react-navigation/native'
 
-import { SplashScreen } from '../pages/SplashScreen'
-import { SingIn } from '../pages/SingIn'
-import { SingUp } from '../pages/SingUp'
-import { PasswordChanger } from '../pages/PasswordChanger'
-import { Profile } from '../pages/Profile'
+
+import { SplashScreen } from '../screens/SplashScreen'
+import { SingIn } from '../screens/SingIn'
+import { SingUp } from '../screens/SingUp'
+import { PasswordChanger } from '../screens/PasswordChanger'
+import { BottomTabNavigation } from './bottomTabNavigation'
 
 import { RootStackParamList } from '../types/navigationTypes'
 
@@ -58,8 +59,8 @@ export const StackNavigation: FC = () => {
                     }}
                 />
                 <Stack.Screen 
-                    name="Profile" 
-                    component={Profile} 
+                    name="BottomTabNavigation" 
+                    component={BottomTabNavigation} 
                     options={{
                         cardStyleInterpolator: CardStyleInterpolators.forFadeFromCenter
                     }}

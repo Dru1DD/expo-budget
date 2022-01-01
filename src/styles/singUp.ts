@@ -1,4 +1,4 @@
-import { StyleSheet, Dimensions, PLatform } from 'react-native'
+import { StyleSheet, Dimensions, Platform } from 'react-native'
 
 export const singUp = StyleSheet.create({
     container: {

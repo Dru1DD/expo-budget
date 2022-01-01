@@ -77,7 +77,6 @@ export const SingIn: FC = () => {
           .signInWithEmailAndPassword(email, password)
           .then((userCredentials: any) => {
             const user = userCredentials.user;
-            console.log(user)
           })
           .catch((error: any) => alert(error.message)) 
       }
