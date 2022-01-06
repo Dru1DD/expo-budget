@@ -1,6 +1,6 @@
 import { StyleSheet } from 'react-native' 
 
-export const accountScreen = StyleSheet.create({
+export const catagoryScreen = StyleSheet.create({
     container: {
         flex: 1,
         backgroundColor: '#262626'

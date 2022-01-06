@@ -10,6 +10,9 @@
     ],
     "plugins": [
       "sentry-expo"
-    ]
+    ],
+    "android": {
+      "package": "com.dru1d.budgetexpoapp"
+    }
   }
 }

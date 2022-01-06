@@ -2,9 +2,9 @@ import React, { FC } from 'react'
 import { StatusBar } from 'expo-status-bar'
 import { View, Text } from 'react-native'
 
-import { accountScreen as styles } from '../styles/accountScreen'
+import { catagoryScreen as styles } from '../styles/catagoryScreen'
 
-export const AccountScreen: FC = () => {
+export const CatagoryScreen: FC = () => {
     return (
         <View style={styles.container}>
             <View style={styles.header}>

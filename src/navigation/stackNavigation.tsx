@@ -8,7 +8,7 @@ import { SplashScreen } from '../screens/SplashScreen'
 import { SingIn } from '../screens/SingIn'
 import { SingUp } from '../screens/SingUp'
 import { PasswordChanger } from '../screens/PasswordChanger'
-import { BottomTabNavigation } from './bottomTabNavigation'
+import { MainStackNavigation } from './mainStackNavigation'
 
 import { RootStackParamList } from '../types/navigationTypes'
 
@@ -59,8 +59,8 @@ export const StackNavigation: FC = () => {
                     }}
                 />
                 <Stack.Screen 
-                    name="BottomTabNavigation" 
-                    component={BottomTabNavigation} 
+                    name="MainStackNavigation" 
+                    component={MainStackNavigation} 
                     options={{
                         cardStyleInterpolator: CardStyleInterpolators.forFadeFromCenter
                     }}

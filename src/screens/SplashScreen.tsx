@@ -18,7 +18,7 @@ export const SplashScreen: FC = () => {
     useEffect(() => {
         const unsubscribe = auth.onAuthStateChanged((user: any ) => {
             if(user) {
-                navigation.navigate("BottomTabNavigation")
+                navigation.navigate("MainStackNavigation")
             }
         })
 
@@ -33,20 +33,6 @@ export const SplashScreen: FC = () => {
                 </Text>
             </View>
             <Animatable.View style={styles.mainPart} animation="fadeInUpBig">
-
-                
-            
-                {/* <MaskedView
-                    maskElement={<Text>Войдите в аккаунт</Text>}
-                >
-                    <LinearGradient
-                        colors={['#FF166F', '#FF2D2F']}
-                        start={[0, 0]}
-                        end={[1, 1]}
-                    >
-                        <Text>Войдите в аккаунт</Text>
-                    </LinearGradient>
-                </MaskedView> */}
                 <LinearGradient
                         style={styles.btn}
                         colors={['#FF166F', '#FF2D2F']}
@@ -54,7 +40,6 @@ export const SplashScreen: FC = () => {
                         end={[1, 1]}
                     >
                         <TouchableOpacity
-                            // onPress={() => navigation.navigate('SingIn')}
                             onPress={() => navigation.navigate('SingIn')}
                         >
                             <Text style={[styles.text, styles.btnText]}>Начинаем</Text>

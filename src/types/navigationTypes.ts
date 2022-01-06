@@ -3,13 +3,12 @@ export type RootStackParamList = {
     SingIn: undefined,
     PasswordChanger: undefined,
     SingUp: undefined,
-    BottomTabNavigation: undefined
+    MainStackNavigation: undefined
 }
 
-export type RootBottomTabParamList = {
+export type MainStackParamlist = {
     MainScreen: undefined,
-    AccountScreen: undefined,
+    CatatgoryScreen: undefined,
     AnalysisScreen: undefined,
     ProfileScreen: undefined,
-    stackNavigation: undefined
 }
