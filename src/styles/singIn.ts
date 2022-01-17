@@ -201,8 +201,6 @@ export const singInStyles = StyleSheet.create({
       services: {
         width: '100%',
         height: 175,
-        borderWidth: 1,
-        borderColor: 'red',
         justifyContent: 'space-evenly',
         alignItems: 'center',
         flexDirection: 'row'

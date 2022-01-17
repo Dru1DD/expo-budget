@@ -1,4 +1,4 @@
-import React, { FC, useState } from 'react'
+import React, { FC, useState, useEffect } from 'react'
 import { useSelector } from 'react-redux'
 import { View, Text } from 'react-native'
 import { LineChart } from 'react-native-chart-kit'
@@ -12,8 +12,8 @@ interface ChartProps {
 export const ChartMain: FC<ChartProps> = ({ isSpending }) => {
 
     const { spendingItems, incomeItems } = useSelector((state: IState) => state)
-
-    const [ spendingData, setSpendingData ] = useState<number[]>(() => {
+    
+    const addingSpendingData = () => {
         if(spendingItems.length >= 0) {
             if(spendingItems.length === 0) {
                 return [...spendingItems.map(item => item.price), 0, 0, 0, 0, 0, 0 ]
@@ -30,8 +30,9 @@ export const ChartMain: FC<ChartProps> = ({ isSpending }) => {
             } else return spendingItems.map(item => item.price)
             
         } else return [ 0, 0, 0, 0, 0, 0, 0]
-    })
-    const [ incomeData, setIncomeData ] = useState<number[]>(() => {
+    }
+
+    const addingIncomeData = () => {
         if(incomeItems.length >= 0) {
             if(incomeItems.length === 0) {
                 return [...incomeItems.map(item => item.price), 0, 0, 0, 0, 0, 0 ]
@@ -47,8 +48,16 @@ export const ChartMain: FC<ChartProps> = ({ isSpending }) => {
                 return [...incomeItems.map(item => item.price), 0]
             } else return [...incomeItems.map(item => item.price)]
         } else return [ 0, 0, 0, 0, 0, 0, 0]
-    })
+    }
+    const [ spendingData, setSpendingData ] = useState<number[]>(addingSpendingData)
+    const [ incomeData, setIncomeData ] = useState<number[]>(addingIncomeData)
 
+    
+
+    useEffect(() => {
+        setIncomeData(addingIncomeData)
+        setSpendingData(addingSpendingData)
+    }, [])
     return (
         <View style={styles.container}>
             {

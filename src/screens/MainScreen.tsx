@@ -10,6 +10,11 @@ import { mainScreen as styles } from '../styles/mainScreen'
 import { ExpenseModal } from '../components/ExpenseModal'
 import { SpendingFooter } from '../components/SpendingFooter'
 import { IncomeFooter } from '../components/IncomeFooter'
+import { StackNavigationProp } from '@react-navigation/stack'
+import { MainStackParamlist } from '../types/navigationTypes'
+import { useNavigation } from '@react-navigation/native'
+
+type mainScreenProp = StackNavigationProp<MainStackParamlist, 'MainScreen'>
 
 export const MainScreen: FC = () => {
 
@@ -18,6 +23,8 @@ export const MainScreen: FC = () => {
 
     const [ isOpen, setIsOpen ] = useState<boolean>(false)
 
+    const navigation = useNavigation<mainScreenProp>()
+
     return (
         <>
             <View style={styles.container}>
@@ -25,7 +32,11 @@ export const MainScreen: FC = () => {
                 <Animatable.View animation={"fadeInDown"} style={styles.header}>
                     <View style={styles.headerText}>
                         <Text style={styles.headerGreeting}>Привет,</Text>
-                        <Text style={styles.headerName}>Саша</Text>
+                        <TouchableOpacity
+                            onPress={() => navigation.navigate('ProfileScreen')}
+                        >
+                            <Text style={styles.headerName}>Саша</Text>
+                        </TouchableOpacity>
                     </View>
                     <View style={styles.headerAdd}>
                         <View style={{marginRight: 20}}>

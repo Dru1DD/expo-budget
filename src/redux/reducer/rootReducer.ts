@@ -1,6 +1,8 @@
 import {
     ADD_ITEM_SPENDING,
-    ADD_ITEM_INCOME
+    ADD_ITEM_INCOME,
+    REMOVE_ITEM_INCOME,
+    REMOVE_ITEM_SPENDING
 } from '../action/actionTypes'
 
 
@@ -12,6 +14,16 @@ interface ADDITEMSPENDING {
 interface ADDITEMINCOME {
     type: typeof ADD_ITEM_INCOME,
     payload: IIncome
+}
+
+interface REMOVEITEMSPENDING {
+    type: typeof REMOVE_ITEM_SPENDING,
+    payload: string
+}
+
+interface REMOVEITEMINCOME { 
+    type: typeof REMOVE_ITEM_INCOME,
+    payload: string
 }
 
 export interface ISpending {
@@ -44,7 +56,7 @@ export const initialState: IState = {
     incomeItems: []
 }
 
-type Action_Type = ADDITEMSPENDING | ADDITEMINCOME
+type Action_Type = ADDITEMSPENDING | ADDITEMINCOME | REMOVEITEMINCOME | REMOVEITEMSPENDING
 
 export const rootReducer = (state: IState = initialState, action: Action_Type) => {
     switch(action.type) {
@@ -59,6 +71,24 @@ export const rootReducer = (state: IState = initialState, action: Action_Type) =
                 ...state,
                 total_income: state.total_income + action.payload.price,
                 incomeItems: [...state.incomeItems, action.payload]
+            }
+        case REMOVE_ITEM_SPENDING: 
+            const newList = state.spendingItems.filter((item: ISpending) => item.discription !== action.payload)
+            let totalSpending = 0
+            let spending_sum = newList.length === 0 ? 0 : newList.map((item: ISpending) => totalSpending += item.price)
+            return {
+                ...state,
+                spendingItems: newList,
+                total_spending: totalSpending
+            }
+        case REMOVE_ITEM_INCOME:
+            const newIncomeList = state.incomeItems.filter((item: IIncome) => item.discription !== action.payload)
+            let totalIncome = 0
+            let income_sum = newIncomeList.length === 0 ? 0 : newIncomeList.map((item: IIncome) => totalIncome += item.price)
+            return {
+                ...state,
+                incomeItems: newIncomeList,
+                total_income: totalIncome
             }
         default: 
             return state

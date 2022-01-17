@@ -131,4 +131,30 @@ export const mainScreen = StyleSheet.create({
         shadowRadius: 4,
         elevation: 5
     },
+    rowBack: {
+        alignItems: 'center',
+        backgroundColor: '#464646',
+        flex: 1,
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        paddingLeft: 15,
+        margin: 10,
+        borderRadius: 10
+    },
+    backRightBtn: {
+        alignItems: 'center',
+        bottom: 0,
+        justifyContent: 'center',
+        position: 'absolute',
+        top: 0,
+        width: 75,
+        borderRadius: 10
+    },
+    backRightBtnRight: {
+        backgroundColor: 'red',
+        right: 0
+    },
+    backTextWhite: {
+        color: '#fff'
+    }
 })

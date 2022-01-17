@@ -1,4 +1,4 @@
-import React, { FC, useState, useCallback } from 'react'
+import React, { FC, useState } from 'react'
 import { useNavigation } from '@react-navigation/native'
 import {
     View,
@@ -8,12 +8,17 @@ import {
 } from 'react-native'
 import { StatusBar } from 'expo-status-bar'
 import * as Animatable from 'react-native-animatable'
+import * as Google from 'expo-google-app-auth'
+import * as Facebook from 'expo-facebook'
+import * as firebase from 'firebase'
+// import * as GoogleSingIn from 'expo-google-sign-in'
 import { singInStyles as styles } from '../styles/singIn'
 import { LinearGradient } from 'expo-linear-gradient'
-import { FontAwesome, Feather } from '@expo/vector-icons'
+import { FontAwesome, FontAwesome5, Feather } from '@expo/vector-icons'
 import { RootStackParamList } from '../types/navigationTypes'
 import { StackNavigationProp } from '@react-navigation/stack'
 import { ISingInData } from '../interfaces/singInInterface'
+import config from '../config'
 import { auth } from '../firebase'
 
 type singInScreenProp = StackNavigationProp<RootStackParamList, 'SingIn'>
@@ -79,6 +84,45 @@ export const SingIn: FC = () => {
             const user = userCredentials.user;
           })
           .catch((error: any) => alert(error.message)) 
+      }
+
+
+      const googleAuth: () => void = async () => {
+        try {
+          const result = await Google.logInAsync({
+            // androidClientId: '',
+            // iosClientId: '',
+            scopes: ['profile', 'email']
+          })
+
+          if(result.type === 'success') return result.accessToken
+          else return { cancelled: true }
+
+        } catch(error: any) {
+          alert(error.message)
+        }
+      }
+
+      const facebookAuth: () => void = async () => {
+        try {
+
+          
+          const { type, token } = await Facebook.getAuthenticationCredentialAsync()
+
+          switch(type) {
+            case 'success': {
+              await firebase.auth().setPersistence(firebase.auth.Auth.Presistence.LOCAL)
+              const credential = firebase.auth.FacebookAuthProvider.credential(token)
+              const facebookProfileData = await firebase.auth().signInAndRetrieveDataWithCredential(credential)
+              return Promise.resolve({ type: 'success'})
+            }
+            case 'cancel': {
+              return Promise.reject({ type: 'cancel'})
+            }
+          }
+        } catch(e: any) {
+          alert(e.message)
+        }
       }
     
       return (
@@ -184,9 +228,20 @@ export const SingIn: FC = () => {
             </View>
             <View style={styles.services}>
               <View style={styles.servIcon}>
-                <FontAwesome name="facebook" color={'blue'} size={48} />
+                <TouchableOpacity
+                  onPress={facebookAuth}
+                >
+                  <FontAwesome5  name="facebook" color={'blue'} size={48} />
+                </TouchableOpacity>
+                
               </View>
               <View style={styles.servIcon}>
+                <TouchableOpacity
+                  onPress={googleAuth}
+                >
+                  <FontAwesome5 name="google" size={48} />
+                </TouchableOpacity>
+                
               </View>
             </View>
             <View style={styles.logoText}>
